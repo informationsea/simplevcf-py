@@ -1,6 +1,11 @@
 # simplevcf
 
-![Python package](https://github.com/informationsea/simplevcf-py/workflows/Python%20package/badge.svg)
+[![Python package](https://github.com/informationsea/simplevcf-py/workflows/Python%20package/badge.svg)](https://github.com/informationsea/simplevcf-py/actions)
+[![PyPI](https://img.shields.io/pypi/v/simplevcf)](https://pypi.org/project/simplevcf/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/simplevcf)](https://pypi.org/project/simplevcf/)
+[![PyPI - License](https://img.shields.io/pypi/l/simplevcf)](https://pypi.org/project/simplevcf/)
+[![PyPI - Format](https://img.shields.io/pypi/format/simplevcf)](https://pypi.org/project/simplevcf/)
+[![PyPI - Status](https://img.shields.io/pypi/status/simplevcf)](https://pypi.org/project/simplevcf/)
 
 Simple VCF parser/writer with pure python
 
