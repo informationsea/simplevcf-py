@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="simplevcf",  # Replace with your own username
-    version="0.0.1",
+    version="0.1.0",
     author="Yasunobu Okamura",
     author_email="okamura@informationsea.info",
     description="A simple VCF parser/weriter",
