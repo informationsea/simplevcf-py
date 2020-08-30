@@ -9,6 +9,8 @@
 
 Simple VCF parser/writer with pure python
 
+[Documentation](https://informationsea.github.io/simplevcf-py/)
+
 ## Examples
 
 ### Read VCF
