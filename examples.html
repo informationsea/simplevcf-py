@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Examples &#8212; simplevcf 0.1.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="simplevcf package" href="simplevcf.html" />
+    <link rel="prev" title="simplevcf" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="examples">
+<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="read-vcf-file">
+<h2>Read VCF file<a class="headerlink" href="#read-vcf-file" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">simplevcf</span><span class="o">.</span><span class="n">vcfopen</span><span class="p">(</span><span class="s1">&#39;some.vcf.gz&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">reader</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="c1"># process a record</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="read-manipulate-and-write">
+<h2>Read, manipulate and write<a class="headerlink" href="#read-manipulate-and-write" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">simplevcf</span><span class="o">.</span><span class="n">vcfopen</span><span class="p">(</span><span class="s1">&#39;some.vcf.gz&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">reader</span><span class="p">,</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;output.vcf) as f:</span>
+    <span class="n">writer</span> <span class="o">=</span> <span class="n">simplevcf</span><span class="o">.</span><span class="n">Writer</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">reader</span><span class="o">.</span><span class="n">get_header</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="c1"># manipulate a record</span>
+        <span class="n">writer</span><span class="o">.</span><span class="n">write_record</span><span class="p">(</span><span class="n">one</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="access-to-info-and-call">
+<h2>Access to INFO and CALL<a class="headerlink" href="#access-to-info-and-call" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">simplevcf</span><span class="o">.</span><span class="n">vcfopen</span><span class="p">(</span><span class="n">test_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">reader</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">one</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="n">one</span><span class="o">.</span><span class="n">INFO</span><span class="p">[</span><span class="s1">&#39;AC&#39;</span><span class="p">],</span> <span class="n">one</span><span class="o">.</span><span class="n">CALL</span><span class="p">[</span><span class="s1">&#39;ERP107576_NovaSeq_SAMEA104707359&#39;</span><span class="p">][</span><span class="s1">&#39;GT&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">simplevcf</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#read-vcf-file">Read VCF file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#read-manipulate-and-write">Read, manipulate and write</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#access-to-info-and-call">Access to INFO and CALL</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="simplevcf.html">simplevcf package</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">simplevcf</a></li>
+      <li>Next: <a href="simplevcf.html" title="next chapter">simplevcf package</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Yasunobu Okamura.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/examples.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

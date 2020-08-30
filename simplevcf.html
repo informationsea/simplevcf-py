@@ -1,0 +1,493 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>simplevcf package &#8212; simplevcf 0.1.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Examples" href="examples.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="simplevcf-package">
+<h1>simplevcf package<a class="headerlink" href="#simplevcf-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-simplevcf">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-simplevcf" title="Permalink to this headline">¶</a></h2>
+<p>Simple Pure Python VCF Parser</p>
+<dl class="py class">
+<dt id="simplevcf.Reader">
+<em class="property">class </em><code class="sig-prename descclassname">simplevcf.</code><code class="sig-name descname">Reader</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stream</span><span class="p">:</span> <span class="n">IO<span class="p">[</span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simplevcf.Reader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>VCF Reader</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>stream</strong> – file-like object</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="simplevcf.Reader.get_header">
+<code class="sig-name descname">get_header</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#simplevcf.header.Header" title="simplevcf.header.Header">simplevcf.header.Header</a><a class="headerlink" href="#simplevcf.Reader.get_header" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get header</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="simplevcf.Reader.get_samples">
+<code class="sig-name descname">get_samples</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span>str<span class="p">]</span><a class="headerlink" href="#simplevcf.Reader.get_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get sample name list</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="simplevcf.Record">
+<em class="property">class </em><code class="sig-prename descclassname">simplevcf.</code><code class="sig-name descname">Record</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">CHROM</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">POS</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">ID</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">REF</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">ALT</span><span class="p">:</span> <span class="n">List<span class="p">[</span>str<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">QUAL</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">FILTER</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">INFO</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>str<span class="p">, </span>Any<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">FORMAT</span><span class="p">:</span> <span class="n">List<span class="p">[</span>str<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">CALL</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>str<span class="p">, </span>Dict<span class="p">[</span>str<span class="p">, </span>Any<span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simplevcf.Record" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<p>VCF Record</p>
+<p>Use <cite>parse</cite> method to parse VCF line</p>
+<dl class="py attribute">
+<dt id="simplevcf.Record.ALT">
+<code class="sig-name descname">ALT</code><em class="property">: List<span class="p">[</span>str<span class="p">]</span></em><a class="headerlink" href="#simplevcf.Record.ALT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alternative sequences</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="simplevcf.Record.CALL">
+<code class="sig-name descname">CALL</code><em class="property">: Dict<span class="p">[</span>str<span class="p">, </span>Dict<span class="p">[</span>str<span class="p">, </span>Any<span class="p">]</span><span class="p">]</span></em><a class="headerlink" href="#simplevcf.Record.CALL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called genotype</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="simplevcf.Record.CHROM">
+<code class="sig-name descname">CHROM</code><em class="property">: str</em><a class="headerlink" href="#simplevcf.Record.CHROM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Chromosome name</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="simplevcf.Record.FILTER">
+<code class="sig-name descname">FILTER</code><em class="property">: Optional<span class="p">[</span>str<span class="p">]</span></em><a class="headerlink" href="#simplevcf.Record.FILTER" title="Permalink to this definition">¶</a></dt>
+<dd><p>VCF entry Filter</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="simplevcf.Record.FORMAT">
+<code class="sig-name descname">FORMAT</code><em class="property">: List<span class="p">[</span>str<span class="p">]</span></em><a class="headerlink" href="#simplevcf.Record.FORMAT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parsed VCF FORMAT record</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="simplevcf.Record.ID">
+<code class="sig-name descname">ID</code><em class="property">: Optional<span class="p">[</span>str<span class="p">]</span></em><a class="headerlink" href="#simplevcf.Record.ID" title="Permalink to this definition">¶</a></dt>
+<dd><p>VCF entry ID</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="simplevcf.Record.INFO">
+<code class="sig-name descname">INFO</code><em class="property">: Dict<span class="p">[</span>str<span class="p">, </span>Any<span class="p">]</span></em><a class="headerlink" href="#simplevcf.Record.INFO" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parsed VCF INFO record</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="simplevcf.Record.POS">
+<code class="sig-name descname">POS</code><em class="property">: int</em><a class="headerlink" href="#simplevcf.Record.POS" title="Permalink to this definition">¶</a></dt>
+<dd><p>VCF entry position</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="simplevcf.Record.QUAL">
+<code class="sig-name descname">QUAL</code><em class="property">: Optional<span class="p">[</span>str<span class="p">]</span></em><a class="headerlink" href="#simplevcf.Record.QUAL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Quality score</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="simplevcf.Record.REF">
+<code class="sig-name descname">REF</code><em class="property">: str</em><a class="headerlink" href="#simplevcf.Record.REF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reference sequence</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="simplevcf.Record.parse">
+<em class="property">static </em><code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">line</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">samples</span><span class="p">:</span> <span class="n">Iterable<span class="p">[</span>str<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#simplevcf.Record" title="simplevcf.Record">simplevcf.Record</a><a class="headerlink" href="#simplevcf.Record.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse VCF line and convert to Record object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>line</strong> – A VCF line</p></li>
+<li><p><strong>samples</strong> – A list of sample names</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="simplevcf.Record.to_line">
+<code class="sig-name descname">to_line</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">samples</span><span class="p">:</span> <span class="n">List<span class="p">[</span>str<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#simplevcf.Record.to_line" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to VCF line</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>samples</strong> – Sample names</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="simplevcf.Writer">
+<em class="property">class </em><code class="sig-prename descclassname">simplevcf.</code><code class="sig-name descname">Writer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stream</span><span class="p">:</span> <span class="n">IO<span class="p">[</span>Any<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">header</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#simplevcf.header.Header" title="simplevcf.header.Header">simplevcf.header.Header</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simplevcf.Writer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>VCF Writer</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>stream</strong> – file-like object</p></li>
+<li><p><strong>headers</strong> – A sequence of header lines</p></li>
+<li><p><strong>samples</strong> – A list of sample names</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="simplevcf.Writer.write_record">
+<code class="sig-name descname">write_record</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">record</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#simplevcf.Record" title="simplevcf.Record">simplevcf.Record</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simplevcf.Writer.write_record" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write VCF record</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>record</strong> – VCF record</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="simplevcf.vcfopen">
+<code class="sig-prename descclassname">simplevcf.</code><code class="sig-name descname">vcfopen</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#simplevcf.Reader" title="simplevcf.Reader">simplevcf.Reader</a><a class="headerlink" href="#simplevcf.vcfopen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Open VCF file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> – A VCF file name</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-simplevcf.snpeff">
+<span id="simplevcf-snpeff-module"></span><h2>simplevcf.snpeff module<a class="headerlink" href="#module-simplevcf.snpeff" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="simplevcf.snpeff.SnpEff">
+<em class="property">class </em><code class="sig-prename descclassname">simplevcf.snpeff.</code><code class="sig-name descname">SnpEff</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Allele</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">Annotation</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">Annotation_Impact</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">Gene_Name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">Gene_ID</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">Feature_Type</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">Feature_ID</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">Transcript_BioType</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">Rank</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">HGVS_c</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">HGVS_p</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">cDNA_pos__cDNA_length</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">CDS_pos__CDS_length</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">AA_pos__AA_length</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">Distance</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">ERRORS</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#simplevcf.snpeff.SnpEff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<p>SnpEff annotation representation</p>
+<dl class="py attribute">
+<dt id="simplevcf.snpeff.SnpEff.AA_pos__AA_length">
+<code class="sig-name descname">AA_pos__AA_length</code><em class="property">: str</em><a class="headerlink" href="#simplevcf.snpeff.SnpEff.AA_pos__AA_length" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 13</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="simplevcf.snpeff.SnpEff.Allele">
+<code class="sig-name descname">Allele</code><em class="property">: str</em><a class="headerlink" href="#simplevcf.snpeff.SnpEff.Allele" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="simplevcf.snpeff.SnpEff.Annotation">
+<code class="sig-name descname">Annotation</code><em class="property">: str</em><a class="headerlink" href="#simplevcf.snpeff.SnpEff.Annotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="simplevcf.snpeff.SnpEff.Annotation_Impact">
+<code class="sig-name descname">Annotation_Impact</code><em class="property">: str</em><a class="headerlink" href="#simplevcf.snpeff.SnpEff.Annotation_Impact" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="simplevcf.snpeff.SnpEff.CDS_pos__CDS_length">
+<code class="sig-name descname">CDS_pos__CDS_length</code><em class="property">: str</em><a class="headerlink" href="#simplevcf.snpeff.SnpEff.CDS_pos__CDS_length" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 12</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="simplevcf.snpeff.SnpEff.Distance">
+<code class="sig-name descname">Distance</code><em class="property">: str</em><a class="headerlink" href="#simplevcf.snpeff.SnpEff.Distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 14</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="simplevcf.snpeff.SnpEff.ERRORS">
+<code class="sig-name descname">ERRORS</code><em class="property">: str</em><a class="headerlink" href="#simplevcf.snpeff.SnpEff.ERRORS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 15</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="simplevcf.snpeff.SnpEff.Feature_ID">
+<code class="sig-name descname">Feature_ID</code><em class="property">: str</em><a class="headerlink" href="#simplevcf.snpeff.SnpEff.Feature_ID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 6</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="simplevcf.snpeff.SnpEff.Feature_Type">
+<code class="sig-name descname">Feature_Type</code><em class="property">: str</em><a class="headerlink" href="#simplevcf.snpeff.SnpEff.Feature_Type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 5</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="simplevcf.snpeff.SnpEff.Gene_ID">
+<code class="sig-name descname">Gene_ID</code><em class="property">: str</em><a class="headerlink" href="#simplevcf.snpeff.SnpEff.Gene_ID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 4</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="simplevcf.snpeff.SnpEff.Gene_Name">
+<code class="sig-name descname">Gene_Name</code><em class="property">: str</em><a class="headerlink" href="#simplevcf.snpeff.SnpEff.Gene_Name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 3</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="simplevcf.snpeff.SnpEff.HGVS_c">
+<code class="sig-name descname">HGVS_c</code><em class="property">: str</em><a class="headerlink" href="#simplevcf.snpeff.SnpEff.HGVS_c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 9</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="simplevcf.snpeff.SnpEff.HGVS_p">
+<code class="sig-name descname">HGVS_p</code><em class="property">: str</em><a class="headerlink" href="#simplevcf.snpeff.SnpEff.HGVS_p" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 10</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="simplevcf.snpeff.SnpEff.Rank">
+<code class="sig-name descname">Rank</code><em class="property">: str</em><a class="headerlink" href="#simplevcf.snpeff.SnpEff.Rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 8</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="simplevcf.snpeff.SnpEff.Transcript_BioType">
+<code class="sig-name descname">Transcript_BioType</code><em class="property">: str</em><a class="headerlink" href="#simplevcf.snpeff.SnpEff.Transcript_BioType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 7</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="simplevcf.snpeff.SnpEff.cDNA_pos__cDNA_length">
+<code class="sig-name descname">cDNA_pos__cDNA_length</code><em class="property">: str</em><a class="headerlink" href="#simplevcf.snpeff.SnpEff.cDNA_pos__cDNA_length" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 11</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="simplevcf.snpeff.SnpEff.parse">
+<em class="property">static </em><code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">record</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#simplevcf.Record" title="simplevcf.Record">simplevcf.Record</a></span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span><a class="reference internal" href="#simplevcf.snpeff.SnpEff" title="simplevcf.snpeff.SnpEff">simplevcf.snpeff.SnpEff</a><span class="p">]</span><a class="headerlink" href="#simplevcf.snpeff.SnpEff.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse VCF record</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>record</strong> – A VCF record</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-simplevcf.header">
+<span id="simplevcf-header-module"></span><h2>simplevcf.header module<a class="headerlink" href="#module-simplevcf.header" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="simplevcf.header.Header">
+<em class="property">class </em><code class="sig-prename descclassname">simplevcf.header.</code><code class="sig-name descname">Header</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">header_lines</span><span class="p">:</span> <span class="n">List<span class="p">[</span><a class="reference internal" href="#simplevcf.header.HeaderLine" title="simplevcf.header.HeaderLine">HeaderLine</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">samples</span><span class="p">:</span> <span class="n">List<span class="p">[</span>str<span class="p">]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simplevcf.header.Header" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>VCF Header</p>
+<dl class="py method">
+<dt id="simplevcf.header.Header.get_contig">
+<code class="sig-name descname">get_contig</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">info_id</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; Optional<span class="p">[</span><a class="reference internal" href="#simplevcf.header.HeaderLine" title="simplevcf.header.HeaderLine">simplevcf.header.HeaderLine</a><span class="p">]</span><a class="headerlink" href="#simplevcf.header.Header.get_contig" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="simplevcf.header.Header.get_format">
+<code class="sig-name descname">get_format</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">info_id</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; Optional<span class="p">[</span><a class="reference internal" href="#simplevcf.header.HeaderLine" title="simplevcf.header.HeaderLine">simplevcf.header.HeaderLine</a><span class="p">]</span><a class="headerlink" href="#simplevcf.header.Header.get_format" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="simplevcf.header.Header.get_header_lines">
+<code class="sig-name descname">get_header_lines</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span><a class="reference internal" href="#simplevcf.header.HeaderLine" title="simplevcf.header.HeaderLine">simplevcf.header.HeaderLine</a><span class="p">]</span><a class="headerlink" href="#simplevcf.header.Header.get_header_lines" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="simplevcf.header.Header.get_info">
+<code class="sig-name descname">get_info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">info_id</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; Optional<span class="p">[</span><a class="reference internal" href="#simplevcf.header.HeaderLine" title="simplevcf.header.HeaderLine">simplevcf.header.HeaderLine</a><span class="p">]</span><a class="headerlink" href="#simplevcf.header.Header.get_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="simplevcf.header.Header.get_samples">
+<code class="sig-name descname">get_samples</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span>str<span class="p">]</span><a class="headerlink" href="#simplevcf.header.Header.get_samples" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="simplevcf.header.Header.parse_header">
+<em class="property">static </em><code class="sig-name descname">parse_header</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lines</span><span class="p">:</span> <span class="n">List<span class="p">[</span>str<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#simplevcf.header.Header" title="simplevcf.header.Header">simplevcf.header.Header</a><a class="headerlink" href="#simplevcf.header.Header.parse_header" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="simplevcf.header.HeaderLine">
+<em class="property">class </em><code class="sig-prename descclassname">simplevcf.header.</code><code class="sig-name descname">HeaderLine</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">line</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">header_tag</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">header_id</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">header_number</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">header_type</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">header_description</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">header_contents</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>str<span class="p">, </span>str<span class="p">]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simplevcf.header.HeaderLine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<p>VCF Header line</p>
+<dl class="py attribute">
+<dt id="simplevcf.header.HeaderLine.header_contents">
+<code class="sig-name descname">header_contents</code><em class="property">: Dict<span class="p">[</span>str<span class="p">, </span>str<span class="p">]</span></em><a class="headerlink" href="#simplevcf.header.HeaderLine.header_contents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dictionary of header contents</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="simplevcf.header.HeaderLine.header_description">
+<code class="sig-name descname">header_description</code><em class="property">: Optional<span class="p">[</span>str<span class="p">]</span></em><a class="headerlink" href="#simplevcf.header.HeaderLine.header_description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description value in INFO/FORMAT</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="simplevcf.header.HeaderLine.header_id">
+<code class="sig-name descname">header_id</code><em class="property">: Optional<span class="p">[</span>str<span class="p">]</span></em><a class="headerlink" href="#simplevcf.header.HeaderLine.header_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>ID value in INFO/FORMAT</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="simplevcf.header.HeaderLine.header_number">
+<code class="sig-name descname">header_number</code><em class="property">: Optional<span class="p">[</span>str<span class="p">]</span></em><a class="headerlink" href="#simplevcf.header.HeaderLine.header_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>Nubmer value in INFO/FORMAT</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="simplevcf.header.HeaderLine.header_tag">
+<code class="sig-name descname">header_tag</code><em class="property">: str</em><a class="headerlink" href="#simplevcf.header.HeaderLine.header_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Header tag type (INFO, FORMAT…)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="simplevcf.header.HeaderLine.header_type">
+<code class="sig-name descname">header_type</code><em class="property">: Optional<span class="p">[</span>str<span class="p">]</span></em><a class="headerlink" href="#simplevcf.header.HeaderLine.header_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Type value in INFO/FORMAT</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="simplevcf.header.HeaderLine.line">
+<code class="sig-name descname">line</code><em class="property">: str</em><a class="headerlink" href="#simplevcf.header.HeaderLine.line" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raw header line</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="simplevcf.header.HeaderLine.parse">
+<em class="property">static </em><code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">line</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#simplevcf.header.HeaderLine" title="simplevcf.header.HeaderLine">simplevcf.header.HeaderLine</a><a class="headerlink" href="#simplevcf.header.HeaderLine.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse single VCF Header</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>line</strong> – a header line</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">simplevcf</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">simplevcf package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-simplevcf">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-simplevcf.snpeff">simplevcf.snpeff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-simplevcf.header">simplevcf.header module</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="examples.html" title="previous chapter">Examples</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Yasunobu Okamura.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/simplevcf.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
