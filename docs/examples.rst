@@ -17,8 +17,7 @@ Read, manipulate and write
 .. code-block:: python
 
     with simplevcf.vcfopen('some.vcf.gz') as reader, with open('output.vcf) as f:
-        writer = simplevcf.Writer(f, reader.headers,
-                                  reader.samples)
+        writer = simplevcf.Writer(f, reader.get_header())
         for record in reader:
             # manipulate a record
             writer.write_record(one)

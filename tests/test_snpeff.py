@@ -7,7 +7,7 @@ import os.path
 import io
 
 
-class TestVCFReader(unittest.TestCase):
+class TestSnpEff(unittest.TestCase):
     def test_snpeff(self):
         test_file = os.path.join(os.path.dirname(__file__), "NA12878.vcf")
 
@@ -18,17 +18,30 @@ class TestVCFReader(unittest.TestCase):
                 records.append(one)
 
         snpeff = simplevcf.snpeff.SnpEff.parse(records[3])
-        self.assertEqual(snpeff,
-                         [
-                             simplevcf.snpeff.SnpEff('C', 'disruptive_inframe_deletion', 'MODERATE', 'HTT', 'ENSG00000197386.12_9', 'transcript', 'ENST00000355072.10_2',
-                                                     'protein_coding', '1/67', 'c.102_110delGCAGCAGCA', 'p.Gln35_Gln37del', '247/13475', '102/9429', '34/3142', '', 'INFO_REALIGN_3_PRIME'),
-                             simplevcf.snpeff.SnpEff('CCAGCAG', 'disruptive_inframe_deletion', 'MODERATE', 'HTT', 'ENSG00000197386.12_9', 'transcript', 'ENST00000355072.10_2',
-                                                     'protein_coding', '1/67', 'c.108_110delGCA', 'p.Gln37del', '253/13475', '108/9429', '36/3142', '', 'INFO_REALIGN_3_PRIME'),
-                             simplevcf.snpeff.SnpEff('C', 'upstream_gene_variant', 'MODIFIER', 'HTT-AS', 'ENSG00000251075.2_8', 'transcript',
-                                                     'ENST00000664062.1_2', 'pseudogene', '', 'n.-347_-339delCTGCTGCTG', '', '', '', '', '339', ''),
-                             simplevcf.snpeff.SnpEff('CCAGCAG', 'upstream_gene_variant', 'MODIFIER', 'HTT-AS', 'ENSG00000251075.2_8',
-                                                     'transcript', 'ENST00000664062.1_2', 'pseudogene', '', 'n.-347_-345delCTG', '', '', '', '', '345', '')
-                         ])
+        self.assertEqual(snpeff, [
+            simplevcf.snpeff.SnpEff(
+                'C', 'disruptive_inframe_deletion', 'MODERATE', 'HTT',
+                'ENSG00000197386.12_9', 'transcript', 'ENST00000355072.10_2',
+                'protein_coding', '1/67', 'c.102_110delGCAGCAGCA',
+                'p.Gln35_Gln37del', '247/13475', '102/9429', '34/3142', '',
+                'INFO_REALIGN_3_PRIME'),
+            simplevcf.snpeff.SnpEff(
+                'CCAGCAG', 'disruptive_inframe_deletion', 'MODERATE', 'HTT',
+                'ENSG00000197386.12_9', 'transcript', 'ENST00000355072.10_2',
+                'protein_coding', '1/67', 'c.108_110delGCA', 'p.Gln37del',
+                '253/13475', '108/9429', '36/3142', '',
+                'INFO_REALIGN_3_PRIME'),
+            simplevcf.snpeff.SnpEff(
+                'C', 'upstream_gene_variant', 'MODIFIER', 'HTT-AS',
+                'ENSG00000251075.2_8', 'transcript', 'ENST00000664062.1_2',
+                'pseudogene', '', 'n.-347_-339delCTGCTGCTG', '', '', '', '',
+                '339', ''),
+            simplevcf.snpeff.SnpEff(
+                'CCAGCAG', 'upstream_gene_variant', 'MODIFIER', 'HTT-AS',
+                'ENSG00000251075.2_8', 'transcript', 'ENST00000664062.1_2',
+                'pseudogene', '', 'n.-347_-345delCTG', '', '', '', '', '345',
+                '')
+        ])
         self.assertEqual(snpeff[0].Allele, 'C')
         self.assertEqual(snpeff[0].Annotation, 'disruptive_inframe_deletion')
         self.assertEqual(snpeff[0].Annotation_Impact, 'MODERATE')

@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
 """Simple Pure Python VCF Parser
 """
 
@@ -10,6 +9,7 @@ import typing
 from typing import Sequence
 import re
 import gzip
+import simplevcf.header
 
 BAD_INFO_CHAR = re.compile(r'[;=,\s]')
 BAD_FORMAT_CHAR = re.compile(r'[:,\s]')
@@ -60,7 +60,6 @@ class Record(typing.NamedTuple):
     CALL: typing.Dict[str, typing.Dict[str, typing.Any]]
     """Called genotype
     """
-
     @staticmethod
     def parse(line: str, samples: typing.Iterable[str]) -> 'Record':
         """Parse VCF line and convert to Record object
@@ -87,8 +86,8 @@ class Record(typing.NamedTuple):
             INFO = {}
 
         if len(elements) >= 9:
-            FORMAT = elements[8].split(
-                ':') if elements[8] != '.' else []  # FORMAT
+            FORMAT = elements[8].split(':') if elements[8] != '.' else [
+            ]  # FORMAT
         else:
             FORMAT = []
 
@@ -100,7 +99,8 @@ class Record(typing.NamedTuple):
                     one_call[k] = v.split(',')
                 CALL[x] = one_call
 
-        return Record(CHROM, POS, ID, REF, ALT, QUAL, FILTER, INFO, FORMAT, CALL)
+        return Record(CHROM, POS, ID, REF, ALT, QUAL, FILTER, INFO, FORMAT,
+                      CALL)
 
     def to_line(self, samples: typing.List[str]) -> str:
         """Convert to VCF line
@@ -137,25 +137,25 @@ class Reader:
        Args:
            stream: file-like object
     """
-
     def __init__(self, stream: typing.IO[typing.Any]):
-        self.headers = list()
-        self.samples = list()
+        header_lines = []
 
         for i, line in enumerate(stream):
             if line.startswith('##'):
-                self.headers.append(line.strip())
-                continue
-            if line.startswith('#'):
-                self.samples = line.strip().split('\t')[9:]
+                header_lines.append(line)
+            elif line.startswith('#'):
+                header_lines.append(line)
                 break
+            else:
+                break
+        self.header = simplevcf.header.Header.parse_header(header_lines)
         self.stream = stream
 
     def __iter__(self):
         return self
 
     def __next__(self) -> Record:
-        return Record.parse(self.stream.__next__(), self.samples)
+        return Record.parse(self.stream.__next__(), self.header.samples)
 
     def __enter__(self):
         return self
@@ -166,12 +166,12 @@ class Reader:
     def get_samples(self) -> typing.List[str]:
         """Get sample name list
         """
-        return self.samples
+        return self.header.get_samples()
 
-    def get_headers(self) -> typing.List[str]:
-        """Get header lines
+    def get_header(self) -> simplevcf.header.Header:
+        """Get header
         """
-        return self.headers
+        return self.header
 
 
 class Writer:
@@ -182,25 +182,24 @@ class Writer:
            headers: A sequence of header lines
            samples: A list of sample names    
     """
-
-    def __init__(self, stream: typing.IO[typing.Any], headers: Sequence[str],
-                 samples: typing.List[str]):
-        self.samples = samples
+    def __init__(self, stream: typing.IO[typing.Any],
+                 header: simplevcf.header.Header):
+        self.samples = header.get_samples()
         self.stream = stream
 
-        for line in headers:
-            print(line.strip(), file=self.stream)
-        if samples:
+        for line in header.get_header_lines():
+            print(line.line.strip(), file=self.stream)
+        if self.samples:
             print('\t'.join([
                 '#CHROM', 'POS', 'ID', 'REF', 'ALT', 'QUAL', 'FILTER', 'INFO',
                 'FORMAT'
             ] + self.samples),
-                file=self.stream)
+                  file=self.stream)
         else:
             print('\t'.join([
                 '#CHROM', 'POS', 'ID', 'REF', 'ALT', 'QUAL', 'FILTER', 'INFO'
             ]),
-                file=self.stream)
+                  file=self.stream)
 
     def write_record(self, record: Record):
         """Write VCF record

@@ -21,3 +21,11 @@ simplevcf.snpeff module
    :undoc-members:
    :show-inheritance:
 
+simplevcf.header module
+-----------------------
+
+.. automodule:: simplevcf.header
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

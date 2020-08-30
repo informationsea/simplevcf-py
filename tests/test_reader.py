@@ -11,28 +11,29 @@ class TestVCFReader(unittest.TestCase):
     def test_printer(self):
         test_file = os.path.join(os.path.dirname(__file__), "NA12878.vcf")
 
-        with simplevcf.vcfopen(test_file) as reader, io.StringIO() as output_text:
-            writer = simplevcf.Writer(output_text, reader.headers,
-                                      reader.samples)
+        with simplevcf.vcfopen(
+                test_file) as reader, io.StringIO() as output_text:
+            writer = simplevcf.Writer(output_text, reader.get_header())
             for one in reader:
-                print(
-                    one.INFO['AC'], one.CALL['ERP107576_NovaSeq_SAMEA104707359']['GT'][0], file=output_text)
+                print(one.INFO['AC'],
+                      one.CALL['ERP107576_NovaSeq_SAMEA104707359']['GT'][0],
+                      file=output_text)
 
     def test_read(self):
         test_file = os.path.join(os.path.dirname(__file__), "NA12878.vcf")
 
         records = []
 
-        with simplevcf.vcfopen(test_file) as reader, io.StringIO() as output_text:
-            writer = simplevcf.Writer(output_text, reader.headers,
-                                      reader.samples)
+        with simplevcf.vcfopen(
+                test_file) as reader, io.StringIO() as output_text:
+            writer = simplevcf.Writer(output_text, reader.get_header())
 
             for one in reader:
                 # print(one)
                 records.append(one)
                 writer.write_record(one)
 
-            self.assertEqual(reader.samples, [
+            self.assertEqual(reader.get_samples(), [
                 "ERP107576_NovaSeq_SAMEA104707359",
                 "SRP174470_NovaSeq_SRR8454589",
                 "ERP107576_BGISeq-500_SAMEA104707357",
